@@ -11,6 +11,7 @@ Exercises:
 
 from random import *
 from turtle import *
+from emoji import emojize
 
 from freegames import path
 
@@ -42,9 +43,12 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-
+tapCount=0
+founds = 0 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global tapCount
+    global founds 
     spot = index(x, y)
     mark = state['mark']
 
@@ -54,7 +58,15 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        
+    tapCount +=1
 
+    founds=0
+    for a in hide:
+        if a == False:
+          founds += 1
+
+   
 
 def draw():
     """Draw image and tiles."""
@@ -73,16 +85,26 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 25, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 30, 'normal'), align='center')
 
+    if founds==4:
+        up()
+        goto(0, 0)
+        color('green')
+        write('YOU WIN!!', font=('Arial', 30, 'normal'), align='center')
+
+    goto(-240,150)#-240,150
+    color('green')
+    write(tapCount, font=('Arial', 30, 'normal'), align='center')
+    
     update()
     ontimer(draw, 100)
 
 
 shuffle(tiles)
-setup(420, 420, 370, 0)
+setup(540, 420, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
