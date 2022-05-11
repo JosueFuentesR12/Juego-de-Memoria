@@ -11,6 +11,7 @@ Exercises:
 
 from random import *
 from turtle import *
+from emoji import emojize
 
 from freegames import path
 
