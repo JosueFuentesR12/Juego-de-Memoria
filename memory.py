@@ -16,7 +16,8 @@ from emoji import emojize
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+emojis=[u'\U0001F347', u'\U0001F348', u'\U0001F349', u'\U0001F34A', u'\U0001F34B', u'\U0001F34C', u'\U0001F34D', u'\U0001F34E', u'\U0001F34F', u'\U0001F350', u'\U0001F351', u'\U0001F352', u'\U0001F353', u'\U0001F95D', u'\U0001F345', u'\U0001F965',u'\U0001F347', u'\U0001F348', u'\U0001F349', u'\U0001F34A', u'\U0001F34B', u'\U0001F34C', u'\U0001F34D', u'\U0001F34E', u'\U0001F34F', u'\U0001F350', u'\U0001F351', u'\U0001F352', u'\U0001F353', u'\U0001F95D', u'\U0001F345', u'\U0001F965']
+tiles = list(emojis) * 2
 state = {'mark': None}
 hide = [True] * 64
 
