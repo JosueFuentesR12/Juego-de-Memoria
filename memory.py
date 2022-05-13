@@ -1,12 +1,8 @@
-"""Memory, puzzle game of number pairs.
-
-Exercises:
-
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
+"""
+Juego: Memory
+Programador 1: Josué Fuentes
+Programador 2: Alex Flores
+Fecha: 10 / mayo / 2022
 """
 
 from random import *
@@ -16,6 +12,7 @@ from emoji import emojize
 from freegames import path
 
 car = path('car.gif')
+#Se agregan los emojis que se usaran en el memorama
 emojis=[u'\U0001F347', u'\U0001F348', u'\U0001F349', u'\U0001F34A', u'\U0001F34B', u'\U0001F34C', u'\U0001F34D', u'\U0001F34E', u'\U0001F34F', u'\U0001F350', u'\U0001F351', u'\U0001F352', u'\U0001F353', u'\U0001F95D', u'\U0001F345', u'\U0001F965',u'\U0001F347', u'\U0001F348', u'\U0001F349', u'\U0001F34A', u'\U0001F34B', u'\U0001F34C', u'\U0001F34D', u'\U0001F34E', u'\U0001F34F', u'\U0001F350', u'\U0001F351', u'\U0001F352', u'\U0001F353', u'\U0001F95D', u'\U0001F345', u'\U0001F965']
 tiles = list(emojis) * 2
 state = {'mark': None}
@@ -44,6 +41,7 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+#Dos nuevas variables para dos contadores, numero de taps y numero de piezas volteadas
 tapCount=0
 founds = 0 
 def tap(x, y):
@@ -59,9 +57,11 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-        
+    
+    #Se aumenta en 1 el contador de clics
     tapCount +=1
 
+    #Se cuenta la cantidad de False en hide
     founds=0
     for a in hide:
         if a == False:
@@ -90,12 +90,14 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'), align='center')
 
-    if founds==4:
+    #Cuando hayan 32 piezas volteadas, dezpligue de mensaje ganador
+    if founds==32:
         up()
         goto(0, 0)
         color('green')
         write('YOU WIN!!', font=('Arial', 30, 'normal'), align='center')
 
+    #Contador de clics
     goto(-240,150)#-240,150
     color('green')
     write(tapCount, font=('Arial', 30, 'normal'), align='center')
